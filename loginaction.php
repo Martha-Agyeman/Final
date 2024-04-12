@@ -25,18 +25,18 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
             echo '<script>alert("Welcome to Sauna."); window.location.href = "home.php";</script>';
             exit;
         } else {
-            echo '<script>alert("Invalid email or password. Please try again."); window.location.href = "login.php";</script>';
+            echo '<script>alert("Invalid email or password. Please try again."); window.location.href = "index.html";</script>';
             exit;
         }
     } else {
         $stmt->close();
         $conn->close();
-        echo '<script>alert("Invalid email or password. Please try again."); window.location.href = "login.php";</script>';
+        echo '<script>alert("Invalid email or password. Please try again."); window.location.href = "index.html";</script>';
         exit;
     }
 
 
 } else {
-    echo '<script>alert("Invalid request. Please try again."); window.location.href = "login.php";</script>';
+    echo '<script>alert("Invalid request. Please try again."); window.location.href = "index.html";</script>';
     exit;
 }

@@ -42,7 +42,7 @@ $stmt->execute();
 
 
 if ($stmt->affected_rows === 1) {
-    header("Location: login.php?success=registration_success");
+    header("Location: index.html?success=registration_success");
     $stmt->close();
     $conn->close();
     exit;

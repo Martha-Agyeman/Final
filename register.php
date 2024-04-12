@@ -53,7 +53,7 @@ include 'connection.php';
         </div>
         </form>
         <div class = "register-link">
-            Already have an account? <a href="login.php">Login here</a>
+            Already have an account? <a href="index.html">Login here</a>
         </div>
     </div>
 
