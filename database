@@ -65,3 +65,15 @@ CREATE TABLE rsvps (
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+USE Sauna;
+
+INSERT INTO events (event_name, event_date, event_location, created_by)
+VALUES ('Melodic Harmony Festival', '2024-06-01', 'garage', 1);
+
+INSERT INTO events (event_name, event_date, event_location, created_by)
+VALUES ('Rhythm & Groove Night', '2024-08-15', 'Bel Afrik', 1);
+
+
+INSERT INTO events (event_name, event_date, event_location, created_by)
+VALUES ('Jazz Fusion Showcase', '2025-03-30', 'El Wak Stadium', 1);
