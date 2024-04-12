@@ -1,0 +1,67 @@
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS Sauna;
+USE Sauna;
+
+-- Table structure for table `users`
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    security_answer1 VARCHAR(100) NOT NULL,
+    security_answer2 VARCHAR(100) NOT NULL,
+    registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table structure for table `albums`
+CREATE TABLE albums (
+    album_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    artist VARCHAR(100) NOT NULL,
+    release_year INT,
+    album_cover VARCHAR(255), 
+    added_by INT,
+    FOREIGN KEY (added_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Table structure for table `album_listens`
+CREATE TABLE album_listens (
+    listen_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    album_id INT NOT NULL,
+    listen_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (album_id) REFERENCES albums(album_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Table structure for table `reviews`
+CREATE TABLE reviews (
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    album_id INT NOT NULL,
+    rating INT, -- Rating out of 5
+    review_text TEXT,
+    review_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (album_id) REFERENCES albums(album_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Table structure for table `events`
+CREATE TABLE events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_name VARCHAR(100) NOT NULL,
+    event_date DATE,
+    event_location VARCHAR(255),
+    created_by INT, -- User who created the event
+    FOREIGN KEY (created_by) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Table structure for table `rsvps`
+CREATE TABLE rsvps (
+    rsvp_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    event_id INT NOT NULL,
+    rsvp_status ENUM('Yes', 'No', 'Maybe') NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (event_id) REFERENCES events(event_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
